@@ -22,7 +22,7 @@ function guess() {
 }
 
 //implement new functions here
-function setHiddenFields(){
+var setHiddenFields = function(){
     attempt = 0;
     answer = Math.floor(Math.random()*10000).toString();
       while(answer.length < 4){
