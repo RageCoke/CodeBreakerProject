@@ -16,13 +16,18 @@ function guess() {
 
     if(getResults(input.value)){
       setMessage("You Win! :)");
-    }else{
-      setmessage("You Lose! :(");
+      showAnswer(true);
+      showReplay();
+    }else if(attempt >= 10){
+      setMessage("You Lose! :(");
+    }else {
+      setMessage("Incorrect, try again.");
+
     }
 }
 
 //implement new functions here
-var setHiddenFields = function(){
+function setHiddenFields(){
     attempt = 0;
     answer = Math.floor(Math.random()*10000).toString();
       while(answer.length < 4){
@@ -64,4 +69,21 @@ function getResults(input){
     finalResult += "</div></div>";
     results.innerHTML += finalResult;
     return count == 4 ? true:false;
+}
+function showAnswer(check){
+  var code = document.getElementById("code");
+  if(check){
+    code.className += " success";
+    code.innerHTML = answer;
+  }else{
+    code.className += " failure";
+    code.innerHTML = answer;
+  }
+}
+
+function showReplay(){
+  var styleOfGuessing = document.getElementById("guessing-div");
+  var styleOfReplay = document.getElementById("replay-div");
+  styleOfGuessing.style = "display:none";
+  styleOfReplay.style = "display:block";
 }
